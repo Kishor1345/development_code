@@ -71,12 +71,12 @@ func Registerroutes() {
 	routes.Criteria(router)
 	/***************************************************************************************************************/
 	// --- HTTPS SERVER START ---
-	fmt.Println("Server starting on port 2300 (HTTPS Enabled)")
+	fmt.Println("Server starting on port 2200 (HTTPS Enabled)")
 
 	certFile := "certificate.pem"
 	keyFile := "key.pem"
 
-	if err := router.RunTLS(":2300", certFile, keyFile); err != nil {
+	if err := router.RunTLS(":2200", certFile, keyFile); err != nil {
 		log.Fatalf("Server failed to start: %v", err)
 	}
 }
