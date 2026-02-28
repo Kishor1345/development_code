@@ -1,0 +1,22 @@
+name: Deploy to Test Server
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.TEST_SERVER_HOST }}
+          username: ${{ secrets.TEST_SERVER_USER }}
+          password: ${{ secrets.TEST_SERVER_PASSWORD }}
+          script: |
+            cd /var/www/html/go_projects/HRMODULE/DeployCode/final_deploy/development_code
+            git checkout test
+            git pull origin test
